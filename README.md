@@ -1,93 +1,21 @@
-# Εφαρμογή Παρακολούθησης Πινάκων Διοριστέων
-**Appointee Lists Tracking App**
+Andreas Savvides AM 27410 (auth, candidate, modules)
+Sotiris Hadjimichael AM 25233 (admin, database, includes, public)
 
-Εφαρμογή παρακολούθησης των πινάκων διοριστέων της Εκπαιδευτικής Υπηρεσίας Κύπρου.
-Επιτρέπει στους υποψηφίους να ελέγχουν την κατάταξή τους και στους διαχειριστές να
-διαχειρίζονται τους πίνακες και τους χρήστες.
+### Get LAMP Running
+1. You need a LAMP server: Linux, Apache, MySQL (or MariaDB), PHP.
+   - On Windows, just download XAMPP or WAMP, it's easy.
+   - On Linux, run `sudo apt install apache2 mysql-server php` or whatever for your distro.
 
----
+2. Make sure PHP has `pdo` and `pdo_mysql` extensions enabled.
 
-## Ομάδα Εργασίας
+### Set Up the Database
+1. Create a new database in MySQL/MariaDB. Call it something like `mixaniki_istou`.
+2. Import the schema: run `mysql -u yourusername -p databasename < database/schema.sql`
+   - Or use phpMyAdmin to import it.
 
-| Όνομα Φοιτητή   | Αριθμός Μητρώου | Ενότητα που Ανατέθηκε         |
-|-----------------|-----------------|-------------------------------|
-| Φοιτητής Α      | ΑΜ: 12345       | public/ – Δημόσια Σελίδα      |
-| Φοιτητής Β      | ΑΜ: 12346       | admin/ – Dashboard Διαχειριστή |
-| Φοιτητής Γ      | ΑΜ: 12347       | candidate/ – Dashboard Υποψηφίου |
+3. If you want some sample data, import `database/seed.sql` too.
 
----
-
-## Δομή Αρχείων
-
-```
-project-root/
-├── public/
-│   ├── index.html        ← Δημόσια αρχική σελίδα (landing page)
-│   └── style.css
-├── admin/
-│   ├── dashboard.html    ← Dashboard διαχειριστή
-│   └── style.css
-├── candidate/
-│   ├── dashboard.html    ← Dashboard υποψηφίου
-│   └── style.css
-├── database/
-│   ├── schema.sql        ← Δημιουργία πινάκων βάσης δεδομένων
-│   └── seed.sql          ← Demo δεδομένα
-├── includes/
-│   └── db.php            ← PDO σύνδεση με MySQL
-├── auth/
-│   ├── register.php      ← Εγγραφή νέου χρήστη
-│   ├── login.php         ← Σύνδεση χρήστη
-│   └── logout.php        ← Αποσύνδεση
-├── modules/
-│   ├── dashboard.php     ← Κεντρική σελίδα (post-login)
-│   └── list.php          ← Λίστα και αναζήτηση διοριστέων
-└── README.md
-```
-
----
-
-## Οδηγίες Εκτέλεσης (Frontend)
-
-Δεν απαιτείται server για το frontend. Ανοίξτε απευθείας στον browser:
-
-```
-Ανοίξτε το αρχείο public/index.html σε οποιονδήποτε browser για να δείτε τη δημόσια σελίδα.
-```
-
-Ή κάντε διπλό κλικ στο αρχείο `public/index.html` από την Εξερεύνηση Αρχείων.
-
-### Πλοήγηση μεταξύ σελίδων:
-- **Αρχική:** `public/index.html`
-- **Admin Dashboard:** `admin/dashboard.html`
-- **Candidate Dashboard:** `candidate/dashboard.html`
-
----
-
-## Οδηγίες Εκτέλεσης (Backend – PHP)
-
-Απαιτείται XAMPP ή παρόμοιο περιβάλλον.
-
-1. Αντιγράψτε τον φάκελο στο `C:/xampp/htdocs/Mixaniki_Istou/`
-2. Εκκινήστε Apache και MySQL από το XAMPP Control Panel
-3. Εισάγετε `database/schema.sql` και `database/seed.sql` στο phpMyAdmin
-4. Ανοίξτε: `http://localhost/Mixaniki_Istou/auth/login.php`
-
-### Demo Λογαριασμοί:
-| Email           | Κωδικός     | Ρόλος      |
-|-----------------|-------------|------------|
-| admin@demo.cy   | Admin1234!  | admin      |
-| maria@demo.cy   | Maria1234!  | candidate  |
-| nikos@demo.cy   | Nikos1234!  | candidate  |
-
----
-
-## Τεχνολογίες
-
-| Στρώμα   | Τεχνολογία                        |
-|----------|-----------------------------------|
-| Frontend | HTML5, CSS3 (Flexbox / Grid)      |
-| Backend  | PHP 8.2, PDO                      |
-| Database | MySQL / MariaDB                   |
-| Fonts    | Google Fonts – Inter              |
-| Server   | Apache (XAMPP)                    |
+### Set Up the App
+1. Put all the files in your web server's folder, like `/var/www/html/` or XAMPP's `htdocs/`.
+2. Open `includes/db.php` and put in your database details (host, username, password, db name).
+3. Go to `http://localhost/` in your browser and it should work.
