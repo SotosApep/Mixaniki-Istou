@@ -1,0 +1,446 @@
+/* ============================================================
+   candidate/style.css
+   Πίνακες Διοριστέων – Candidate Dashboard Styles
+   Color palette:
+     Deep Blue  #1a3a5c
+     White      #ffffff
+     Light Gray #f4f6f8
+     Gold       #c9a84c
+   Font: Inter (Google Fonts)
+============================================================ */
+
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap');
+
+/* ── Reset & Base ─────────────────────────────────────────── */
+*, *::before, *::after {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+}
+
+html {
+    scroll-behavior: smooth;
+}
+
+body {
+    font-family: 'Inter', sans-serif;
+    font-size: 16px;
+    color: #1a3a5c;
+    background-color: #f4f6f8;
+    line-height: 1.6;
+}
+
+/* ── Typography ───────────────────────────────────────────── */
+h1 { font-size: 2.4rem; font-weight: 700; line-height: 1.2; }
+h2 { font-size: 1.8rem; font-weight: 600; }
+h3 { font-size: 1.2rem; font-weight: 600; }
+
+/* ── Layout Helpers ───────────────────────────────────────── */
+.section-inner {
+    max-width: 1100px;
+    margin: 0 auto;
+    padding: 0 24px;
+}
+
+/* ── Buttons ──────────────────────────────────────────────── */
+.btn {
+    display: inline-block;
+    padding: 10px 24px;
+    border-radius: 6px;
+    font-size: 0.9rem;
+    font-weight: 600;
+    text-decoration: none;
+    border: 2px solid transparent;
+    transition: background-color 0.2s, color 0.2s, transform 0.1s;
+    cursor: pointer;
+}
+
+.btn-primary {
+    background-color: #c9a84c;
+    color: #1a3a5c;
+    border-color: #c9a84c;
+}
+
+.btn-primary:hover {
+    background-color: #b8922e;
+    border-color: #b8922e;
+    transform: translateY(-1px);
+}
+
+/* ── HEADER ───────────────────────────────────────────────── */
+.site-header {
+    background-color: #1a3a5c;
+    position: sticky;
+    top: 0;
+    z-index: 100;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.2);
+}
+
+.header-inner {
+    max-width: 1100px;
+    margin: 0 auto;
+    padding: 0 24px;
+    height: 64px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}
+
+.logo {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+}
+
+.logo-icon { font-size: 1.5rem; }
+
+.logo-text {
+    font-size: 1.1rem;
+    font-weight: 700;
+    color: #ffffff;
+    letter-spacing: 0.3px;
+}
+
+.header-user {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    color: #ccd9e8;
+    font-size: 0.9rem;
+}
+
+.user-badge { font-size: 1.2rem; }
+
+.user-name strong {
+    color: #c9a84c;
+}
+
+.btn-logout {
+    background-color: rgba(255,255,255,0.12);
+    color: #ffffff;
+    text-decoration: none;
+    padding: 6px 14px;
+    border-radius: 5px;
+    font-size: 0.85rem;
+    transition: background-color 0.2s;
+}
+
+.btn-logout:hover {
+    background-color: rgba(255,255,255,0.22);
+}
+
+/* ── CANDIDATE NAV ────────────────────────────────────────── */
+.candidate-nav {
+    background-color: #0f2540;
+    border-bottom: 3px solid #c9a84c;
+}
+
+.nav-inner {
+    max-width: 1100px;
+    margin: 0 auto;
+    padding: 0 24px;
+}
+
+.candidate-nav ul {
+    list-style: none;
+    display: flex;
+    gap: 4px;
+    flex-wrap: wrap;
+}
+
+.candidate-nav ul li a {
+    display: block;
+    text-decoration: none;
+    color: #a8c4d8;
+    font-size: 0.88rem;
+    font-weight: 500;
+    padding: 12px 16px;
+    transition: color 0.2s, background-color 0.2s;
+    border-bottom: 3px solid transparent;
+    margin-bottom: -3px;
+}
+
+.candidate-nav ul li a:hover,
+.candidate-nav ul li a.active {
+    color: #ffffff;
+    background-color: rgba(255,255,255,0.06);
+    border-bottom-color: #c9a84c;
+}
+
+/* ── WELCOME SECTION ──────────────────────────────────────── */
+.welcome-section {
+    background: linear-gradient(135deg, #1a3a5c 0%, #0f2540 100%);
+    color: #ffffff;
+    padding: 40px 0;
+}
+
+.welcome-section h1 {
+    color: #ffffff;
+    margin-bottom: 8px;
+}
+
+.welcome-section p {
+    color: #a8c4d8;
+}
+
+/* ── STATUS SUMMARY ───────────────────────────────────────── */
+.summary-section {
+    padding: 48px 0;
+    background-color: #ffffff;
+}
+
+.summary-section h2 {
+    margin-bottom: 24px;
+    border-left: 4px solid #c9a84c;
+    padding-left: 12px;
+}
+
+.summary-cards {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+    gap: 20px;
+}
+
+/* .card — reusable component for candidate module */
+.card {
+    background-color: #ffffff;
+    border-radius: 10px;
+    padding: 20px 24px;
+    box-shadow: 0 2px 10px rgba(26, 58, 92, 0.08);
+    transition: transform 0.2s, box-shadow 0.2s;
+    border-top: 4px solid #c9a84c;
+}
+
+.card:hover {
+    transform: translateY(-4px);
+    box-shadow: 0 8px 24px rgba(26, 58, 92, 0.14);
+}
+
+.summary-card {
+    display: flex;
+    align-items: center;
+    gap: 16px;
+}
+
+.summary-card .card-icon {
+    font-size: 2rem;
+    flex-shrink: 0;
+}
+
+/* Advanced selectors */
+.summary-card .card-info h3 {
+    font-size: 0.82rem;
+    color: #5a7a9a;
+    font-weight: 500;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+    margin-bottom: 4px;
+}
+
+.summary-card .card-info p {
+    font-size: 1rem;
+    font-weight: 600;
+    color: #1a3a5c;
+}
+
+/* Status variants */
+.status-pending {
+    border-top-color: #c9a84c;
+}
+
+.status-pending .card-info p {
+    color: #856404;
+}
+
+.status-appointed {
+    border-top-color: #28a745;
+}
+
+.status-appointed .card-info p {
+    color: #155724;
+}
+
+.status-rejected {
+    border-top-color: #dc3545;
+}
+
+.status-rejected .card-info p {
+    color: #721c24;
+}
+
+.no-records {
+    color: #5a7a9a;
+    font-style: italic;
+    padding: 16px 0;
+}
+
+/* ── ACTION CARDS ─────────────────────────────────────────── */
+.actions-section {
+    padding: 48px 0;
+    background-color: #f4f6f8;
+}
+
+.actions-section h2 {
+    margin-bottom: 32px;
+    border-left: 4px solid #c9a84c;
+    padding-left: 12px;
+}
+
+.action-cards {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+    gap: 24px;
+}
+
+.action-card {
+    background-color: #ffffff;
+    border-radius: 10px;
+    padding: 40px 28px;
+    text-align: center;
+    box-shadow: 0 2px 10px rgba(26, 58, 92, 0.08);
+    border-top: 4px solid #c9a84c;
+    transition: transform 0.2s, box-shadow 0.2s;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 12px;
+}
+
+.action-card:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 10px 32px rgba(26, 58, 92, 0.15);
+}
+
+.action-icon {
+    font-size: 3.2rem;
+}
+
+/* Advanced selectors */
+.action-card h3 {
+    font-size: 1.15rem;
+    color: #1a3a5c;
+}
+
+.action-card p {
+    color: #5a7a9a;
+    font-size: 0.9rem;
+    line-height: 1.6;
+}
+
+.action-cards .action-card .btn {
+    margin-top: 8px;
+    width: 100%;
+    text-align: center;
+}
+
+/* ── HISTORY SECTION ──────────────────────────────────────── */
+.history-section {
+    padding: 48px 0;
+    background-color: #ffffff;
+}
+
+.history-section h2 {
+    margin-bottom: 24px;
+    border-left: 4px solid #c9a84c;
+    padding-left: 12px;
+}
+
+.history-table-wrap {
+    background-color: #f4f6f8;
+    border-radius: 10px;
+    overflow: hidden;
+    box-shadow: 0 2px 10px rgba(26,58,92,0.07);
+}
+
+.history-table {
+    width: 100%;
+    border-collapse: collapse;
+    font-size: 0.9rem;
+}
+
+.history-table thead {
+    background-color: #1a3a5c;
+    color: #ffffff;
+}
+
+.history-table thead th {
+    padding: 14px 18px;
+    text-align: left;
+    font-weight: 600;
+    font-size: 0.85rem;
+}
+
+.history-table tbody tr {
+    border-bottom: 1px solid #e0e8f0;
+    transition: background-color 0.15s;
+}
+
+.history-table tbody tr:last-child {
+    border-bottom: none;
+}
+
+.history-table tbody tr:hover {
+    background-color: #eaf0f7;
+}
+
+.history-table tbody td {
+    padding: 14px 18px;
+    color: #1a3a5c;
+}
+
+/* Badges */
+.badge {
+    display: inline-block;
+    padding: 4px 10px;
+    border-radius: 20px;
+    font-size: 0.78rem;
+    font-weight: 600;
+}
+
+.badge-success { background-color: #d4edda; color: #155724; }
+.badge-warning  { background-color: #fff3cd; color: #856404; }
+.badge-danger   { background-color: #f8d7da; color: #721c24; }
+
+/* ── FOOTER ───────────────────────────────────────────────── */
+.site-footer {
+    background-color: #1a3a5c;
+    color: #a8c4d8;
+    padding: 36px 24px;
+    text-align: center;
+}
+
+.footer-inner {
+    max-width: 1100px;
+    margin: 0 auto;
+}
+
+.footer-brand {
+    font-size: 1rem;
+    font-weight: 700;
+    color: #ffffff;
+    margin-bottom: 8px;
+}
+
+.footer-sub {
+    font-size: 0.82rem;
+    margin-bottom: 16px;
+}
+
+.footer-nav {
+    display: flex;
+    justify-content: center;
+    gap: 24px;
+    flex-wrap: wrap;
+}
+
+.footer-nav a {
+    color: #a8c4d8;
+    text-decoration: none;
+    font-size: 0.85rem;
+    transition: color 0.2s;
+}
+
+/* Advanced selector */
+.footer-nav a:hover {
+    color: #c9a84c;
+}
