@@ -8,7 +8,9 @@ if (!isset($_SESSION['user_id'])) {
     exit;
 }
 
-$keyword = trim($_GET['keyword'] ?? '');
+$username    = $_SESSION['username'];
+$keyword     = trim($_GET['keyword'] ?? '');
+$isMyTracking = ($keyword !== '' && $keyword === $username);
 
 if ($keyword !== '') {
     $kw   = '%' . $keyword . '%';
@@ -54,6 +56,7 @@ function statusLabel(string $s): string {
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Λίστα Διοριστέων – Πίνακες Διοριστέων</title>
     <link rel="stylesheet" href="../shared.css">
+    <link rel="stylesheet" href="../Candidate/style.css">
 </head>
 <body>
 
@@ -64,19 +67,22 @@ function statusLabel(string $s): string {
                 <span class="logo-text">Πίνακες Διοριστέων</span>
             </div>
             <div class="header-user">
+                <span class="user-badge">🎓</span>
                 <span class="user-name">
-                    <?= htmlspecialchars($_SESSION['username'], ENT_QUOTES, 'UTF-8') ?>
+                    Υποψήφιος: <strong><?= htmlspecialchars($username, ENT_QUOTES, 'UTF-8') ?></strong>
                 </span>
                 <a href="../auth/logout.php" class="btn-logout">Αποσύνδεση</a>
             </div>
         </div>
     </header>
 
-    <nav class="sub-nav">
+    <nav class="candidate-nav">
         <div class="nav-inner">
             <ul>
-                <li><a href="dashboard.php">🏠 Dashboard</a></li>
-                <li><a href="list.php" class="active">📄 Λίστα Διοριστέων</a></li>
+                <li><a href="../Candidate/dashboard.php">🏠 Dashboard</a></li>
+                <li><a href="../Candidate/profile.php">👤 Το Προφίλ μου</a></li>
+                <li><a href="list.php?keyword=<?= urlencode($username) ?>"<?= $isMyTracking ? ' class="active"' : '' ?>>📌 Παρακολούθηση Αιτήσεών μου</a></li>
+                <li><a href="list.php"<?= !$isMyTracking ? ' class="active"' : '' ?>>🔍 Αναζήτηση Πινάκων</a></li>
                 <li><a href="../public/index.php">🌐 Αρχική</a></li>
             </ul>
         </div>
@@ -144,7 +150,7 @@ function statusLabel(string $s): string {
             </p>
         <?php endif; ?>
 
-        <a href="dashboard.php" class="btn btn-secondary" style="margin-top:24px;">
+        <a href="../Candidate/dashboard.php" class="btn btn-secondary" style="margin-top:24px;">
             ← Επιστροφή στο Dashboard
         </a>
 
@@ -156,7 +162,7 @@ function statusLabel(string $s): string {
             <p class="footer-sub">Εκπαιδευτική Υπηρεσία Κύπρου</p>
             <nav class="footer-nav">
                 <a href="../public/index.php">Αρχική</a>
-                <a href="dashboard.php">Dashboard</a>
+                <a href="../Candidate/dashboard.php">Dashboard</a>
                 <a href="../auth/logout.php">Αποσύνδεση</a>
             </nav>
         </div>

@@ -117,7 +117,7 @@ function hsc(mixed $v): string {
             <ul>
                 <li><a href="dashboard.php">🏠 Dashboard</a></li>
                 <li><a href="profile.php" class="active">👤 Το Προφίλ μου</a></li>
-                <li><a href="../modules/list.php">📌 Παρακολούθηση Αιτήσεών μου</a></li>
+                <li><a href="../modules/list.php?keyword=<?= urlencode($user['username']) ?>">📌 Παρακολούθηση Αιτήσεών μου</a></li>
                 <li><a href="../modules/list.php">🔍 Αναζήτηση Πινάκων</a></li>
                 <li><a href="../public/index.php">🌐 Αρχική</a></li>
             </ul>

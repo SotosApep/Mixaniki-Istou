@@ -2,9 +2,12 @@
 // ============================================================
 // public/index.php
 // Public landing page — statistics pulled live from the DB.
-// No session required.
 // ============================================================
+session_start();
 require_once __DIR__ . '/../includes/db.php';
+
+$loggedIn = isset($_SESSION['user_id']);
+$role     = $_SESSION['role'] ?? null;
 
 // ── Live statistics queries ──────────────────────────────────
 $totalCandidates = $pdo->query(
@@ -42,9 +45,17 @@ $totalSpecialties = $pdo->query(
             <nav class="main-nav">
                 <ul>
                     <li><a href="index.php" class="active">Αρχική</a></li>
-                    <li><a href="../candidate/dashboard.php">Υποψήφιοι</a></li>
-                    <li><a href="../admin/dashboard.php">Διαχειριστές</a></li>
-                    <li><a href="../auth/register.php" class="btn-nav">Εγγραφή</a></li>
+                    <?php if ($loggedIn): ?>
+                        <?php if ($role === 'admin'): ?>
+                            <li><a href="../admin/dashboard.php">Dashboard</a></li>
+                        <?php else: ?>
+                            <li><a href="../Candidate/dashboard.php">Dashboard</a></li>
+                        <?php endif; ?>
+                        <li><a href="../auth/logout.php" class="btn-nav">Αποσύνδεση</a></li>
+                    <?php else: ?>
+                        <li><a href="../auth/login.php">Σύνδεση</a></li>
+                        <li><a href="../auth/register.php" class="btn-nav">Εγγραφή</a></li>
+                    <?php endif; ?>
                 </ul>
             </nav>
         </div>
